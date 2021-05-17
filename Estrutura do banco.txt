@@ -1,0 +1,63 @@
+# RECEITAS PARA APURAÇÃO DA APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE	
+CREATE TABLE 1_Receitas_apuração_SPS (
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(7),
+    estado VARCHAR(30),
+    ano VARCHAR(30),
+    campo VARCHAR(255),
+    previsao_inicial INT,
+    previsão_atualizada INT,
+    Receitas_realizadas_Bimestre INT,
+    Receitas_realizadas_Porcentagem INT,
+);
+
+CREATE TABLE 2_Receitas_adicionais_financiamento (
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(7),
+    estado VARCHAR(30),
+    ano VARCHAR(30),
+    campo VARCHAR(255),
+    previsao_inicial INT,
+    previsão_atualizada INT,
+    Receitas_realizadas_Bimestre INT,
+    Receitas_realizadas_Porcentagem INT,
+);
+
+CREATE TABLE 3_Despesas_saúde_natureza(
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(7),
+    estado VARCHAR(30),
+    ano VARCHAR(30),
+    campo VARCHAR(255),
+    dotação_inicial INT,
+    dotação_atualizada INT,
+    despesas_executadas_liquidadas INT,
+    despesas_executadas_inscritas INT,
+    despesas_executadas_porcentagem INT
+);
+
+CREATE TABLE 4_Despesas_saúde_não_computadas(
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(7),
+    estado VARCHAR(30),
+    ano VARCHAR(30),
+    campo VARCHAR(255),
+    dotação_inicial INT,
+    dotação_atualizada INT,
+    despesas_executadas_liquidadas INT,
+    despesas_executadas_inscritas INT,
+    despesas_executadas_porcentagem INT
+);
+
+CREATE TABLE 4_Despesas_saúde_não_computadas(
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(7),
+    estado VARCHAR(30),
+    ano VARCHAR(30),
+    campo VARCHAR(255),
+    dotação_inicial INT,
+    dotação_atualizada INT,
+    despesas_executadas_liquidadas INT,
+    despesas_executadas_inscritas INT,
+    despesas_executadas_porcentagem INT
+);
