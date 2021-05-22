@@ -123,7 +123,6 @@ for ano in range(2013,2020):
                 var.append(pre_var)
                 pre_var=[]
                 pre_var.append(Previsão[i])
-        print(pre_var)
         pre_var.insert(3,"0.000000001")
         var.append(pre_var[0:-1])
         var=var[1:]
