@@ -84,9 +84,9 @@ for ano in range(2013,2020):
         for j in range(76,113):
             lines = table[1].find_elements_by_xpath("//td[@class='tdr caixa']")[j].text
             if lines ==' ':
-                Previsão.append('0.000000001')
+                lines='0.000000001'
             elif lines == 'N/A':
-                Previsão.append("0.000000001")
+                lines="0.000000001"
             else:
                 lines = float(lines.replace(".","").replace(",","."))
             if j%4 !=0:
@@ -124,7 +124,10 @@ for ano in range(2013,2020):
                 pre_var=[]
                 pre_var.append(Previsão[i])
         pre_var.insert(3,"0.000000001")
-        var.append(pre_var[0:-1])
+        if ano not in [2016,2017,2018,2019]:
+            var.append(pre_var[0:-1])
+        else:
+            var.append(pre_var)
         var=var[1:]
         for k in range(0,len(Descrição)-1):
             sql = 'INSERT INTO 3_Despesas_saúde_natureza(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
