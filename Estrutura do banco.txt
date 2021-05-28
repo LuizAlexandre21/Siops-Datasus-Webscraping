@@ -5,10 +5,10 @@ CREATE TABLE 1_Receitas_apuração_SPS (
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    previsao_inicial float(80),
-    previsão_atualizada float(80),
-    Receitas_realizadas_Bimestre float(80),
-    Receitas_realizadas_Porcentagem float(80)
+    previsao_inicial FLOAT,
+    previsão_atualizada FLOAT,
+    Receitas_realizadas_Bimestre FLOAT,
+    Receitas_realizadas_Porcentagem FLOAT
 );
 
 CREATE TABLE 2_Receitas_adicionais_financiamento (
@@ -17,10 +17,10 @@ CREATE TABLE 2_Receitas_adicionais_financiamento (
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    previsao_inicial float(80),
-    previsão_atualizada float(80),
-    Receitas_realizadas_Bimestre float(80),
-    Receitas_realizadas_Porcentagem float(80)
+    previsao_inicial FLOAT,
+    previsão_atualizada FLOAT,
+    Receitas_realizadas_Bimestre FLOAT,
+    Receitas_realizadas_Porcentagem FLOAT
 );
 
 CREATE TABLE 3_Despesas_saúde_natureza(
@@ -29,11 +29,11 @@ CREATE TABLE 3_Despesas_saúde_natureza(
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    dotação_inicial float(80),
-    dotação_atualizada float(80),
-    despesas_executadas_liquidadas float(80),
-    despesas_executadas_inscritas float(80),
-    despesas_executadas_porcentagem float(80)
+    dotação_inicial FLOAT,
+    dotação_atualizada FLOAT,
+    despesas_executadas_liquidadas FLOAT,
+    despesas_executadas_inscritas FLOAT,
+    despesas_executadas_porcentagem FLOAT
 );
 
 CREATE TABLE 4_Despesas_saúde_não_computadas(
@@ -42,11 +42,11 @@ CREATE TABLE 4_Despesas_saúde_não_computadas(
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    dotação_inicial float(80),
-    dotação_atualizada float(80),
-    despesas_executadas_liquidadas float(80),
-    despesas_executadas_inscritas float(80),
-    despesas_executadas_porcentagem float(80)
+    dotação_inicial FLOAT,
+    dotação_atualizada FLOAT,
+    despesas_executadas_liquidadas FLOAT,
+    despesas_executadas_inscritas FLOAT,
+    despesas_executadas_porcentagem FLOAT
 );
 
 CREATE TABLE 5_Despesas_saúde_subfunção(
@@ -55,9 +55,9 @@ CREATE TABLE 5_Despesas_saúde_subfunção(
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    dotação_inicial float(80),
-    dotação_atualizada float(80),
-    despesas_executadas_liquidadas float(80),
-    despesas_executadas_inscritas float(80),
-    despesas_executadas_porcentagem float(80)
+    dotação_inicial FLOAT,
+    dotação_atualizada FLOAT,
+    despesas_executadas_liquidadas FLOAT,
+    despesas_executadas_inscritas FLOAT,
+    despesas_executadas_porcentagem FLOAT
 );

@@ -3,13 +3,18 @@ from selenium import webdriver
 import pymysql
 import pandas as pd 
 import time 
+import configparser
 
 # Estrutura de conexão do banco de dados 
-host = 'localhost'
-user = 'root'
-passwd = "34340012"
-db = "Datasus"
-port=3306
+config = configparser.ConfigParser()
+parser=config.read('config.ini')
+banco = parser['Banco']
+
+host = banco['host']
+user = banco['user']
+passwd = banco['passwd']
+db = banco['db']
+port= int(banco['port'])
 db_conn = pymysql.connect(host=host, port=port, db=db, user=user, passwd=passwd, charset='utf8')
 db_cur = db_conn.cursor()
 
