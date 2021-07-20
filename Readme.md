@@ -26,7 +26,7 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 ### Versão 0.1.1 
 
 - Inclusão do tratamento de erro (try and except)
-- 
+
 ---
 ## Pre requisitos 
 
