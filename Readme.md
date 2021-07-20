@@ -23,7 +23,10 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 - Amostra : Municipios do Estado do Ceará 
 - Intervalo Temporal : 2013 -2019 
 
+### Versão 0.1.1 
 
+- Inclusão do tratamento de erro (try and except)
+- 
 ---
 ## Pre requisitos 
 
