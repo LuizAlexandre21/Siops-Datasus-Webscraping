@@ -10,8 +10,9 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 
 ### Histórico das versões 
 
-- [x] Versão para o estado do Ceará
-
+- [ ] Versão para o estado do Ceará
+- [x] Versão para todo o Brasil 
+  
 ### Versão 0.1 
 
 - Raspagem das principais tabelas do siops 
@@ -27,6 +28,8 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 
 - Inclusão do tratamento de erro (try and except)
 
+### Versão 0.2 
+- Amostra : Municipios de todo o território brasileiro
 ---
 ## Pre requisitos 
 
