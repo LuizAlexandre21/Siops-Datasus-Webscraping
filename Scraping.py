@@ -218,5 +218,6 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
-            except:
+            except Exception as e:
+                print(e)
                 print(" Na cidade {} e no Ano {}, existe um problema".format(code,ano))
