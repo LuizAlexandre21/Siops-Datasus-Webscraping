@@ -25,7 +25,13 @@ mun = pd.read_csv("Lista de municipios.csv")
 
 # 2. Raspando os dados 
 # 2.1 Configurando o drive do chrome 
-drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver')
+chrome_options = Options()
+chrome_options.add_argument("--disable-extensions")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--no-sandbox") # linux only
+chrome_options.add_argument("--headless")
+chrome_options.headless = True # also works
+drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver',options=chrome_options)
 
 # 2.2 Criando a estrutura de raspagem
 for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11,14,42,35,28,17]:
