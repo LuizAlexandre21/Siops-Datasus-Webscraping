@@ -7,15 +7,15 @@ import configparser
 import numpy as np
 
 # Estrutura de conexão do banco de dados 
-config = configparser.ConfigParser()
-parser = config.read('config.ini')
-banco = parser['Banco']
+#config = configparser.ConfigParser()
+#parser = config.read('config.ini')
+#banco = parser['Banco']
 
-host = banco['host']
-user = banco['user']
-passwd = banco['passwd']
-db = banco['db']
-port= int(banco['port'])
+host = 'localhost'
+user = 'alexandre'
+passwd = '34340012'
+db = 'Data_saude'
+port= 3306
 db_conn = pymysql.connect(host=host, port=port, db=db, user=user, passwd=passwd, charset='utf8')
 db_cur = db_conn.cursor()
 
@@ -25,13 +25,11 @@ mun = pd.read_csv("Lista de municipios.csv")
 
 # 2. Raspando os dados 
 # 2.1 Configurando o drive do chrome 
-chrome_options = Options()
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("--disable-gpu")
-chrome_options.add_argument("--no-sandbox") # linux only
-chrome_options.add_argument("--headless")
-chrome_options.headless = True # also works
-drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver',options=chrome_options)
+#options = webdriver.ChromeOptions()
+#options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+#options.add_argument('headless')
+#options.add_argument('window-size=0x0')
+drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver')#,chrome_options=options)
 
 # 2.2 Criando a estrutura de raspagem
 for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11,14,42,35,28,17]:
@@ -43,7 +41,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                 municipio = cod_mun[cod_mun['Codigo']==code]['municipio']
 
                 # Criando o link de acesso as informações 
-                site = 'http://siops.datasus.gov.br/consleirespfiscal.php?S=1&UF={};&Municipio={};&Ano={}&Periodo=6'.format(estado,code,ano)
+                site = 'http://siops.datasus.gov.br/consleirespfiscal.php?S=1&UF={};&Municipio={};&Ano={}&Periodo=2'.format(estado,code,ano)
                 print(site)
 
                 # Acessando o link
