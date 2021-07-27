@@ -83,7 +83,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                 var.append(Previsão)
                 # Importando os dados para o banco 
                 for k in range(0,len(Descrição)):
-                    sql = 'INSERT INTO 1_Receitas_apuração_SPS(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
+                    sql = 'INSERT INTO Receitas_apuração_sps(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     #db_cur.execute(sql.format(list(municipio)[0], str(code),'Ceará',str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
                     db_conn.commit()
                     print("Insert")
@@ -110,7 +110,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                         Previsão.append(lines)
                 var = var[1:]
                 for k in range(0,len(Descrição)):
-                    #sql = 'INSERT INTO 2_Receitas_adicionais_financiamento(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
+                    sql = 'INSERT INTO Receitas_adicionais_financiamento(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
                     db_conn.commit()
                     print("Insert")
@@ -143,7 +143,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                     var.append(pre_var)
                 var=var[1:]
                 for k in range(0,len(Descrição)-1):
-                    #sql = 'INSERT INTO 3_Despesas_saúde_natureza(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
+                    sql = 'INSERT INTO 3_Despesas_saúde_natureza(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
@@ -178,7 +178,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                 var[-1]=var_last
                 var=var[1:]
                 for k in range(0,len(Descrição)-1):
-                    #sql = 'INSERT INTO 4_Despesas_saúde_não_computadas(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
+                    sql = 'INSERT INTO 4_Despesas_saúde_não_computadas(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
@@ -214,7 +214,7 @@ for estado in [12,27,16,13,29,23,53,32,52,21,51,50,31,15,25,41,26,22,24,43,33,11
                 var[-1]=var_last
                 var=var[1:]
                 for k in range(0,len(Descrição)):
-                    #sql = 'INSERT INTO 5_Despesas_saúde_subfunção(municipio,codigo_municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
+                    sql = 'INSERT INTO 5_Despesas_saúde_subfunção(municipio,codigo_municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
