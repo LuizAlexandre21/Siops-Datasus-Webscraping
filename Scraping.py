@@ -20,35 +20,33 @@ db_conn = pymysql.connect(host=host, port=port, db=db, user=user, passwd=passwd,
 db_cur = db_conn.cursor()
 
 
-# 1. Importando os códigos referêntes do municipios 
+# 1. Importando os códigos referêntes do municipios e Estados
+# 1.1 Municipios 
 mun = pd.read_csv("Lista de municipios.csv")
 
 # 2. Raspando os dados 
 # 2.1 Configurando o drive do chrome 
-#options = webdriver.ChromeOptions()
-#options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
-#options.add_argument('headless')
-#options.add_argument('window-size=0x0')
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+options.add_argument('headless')
+options.add_argument('window-size=0x0')
 drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver')#,chrome_options=options)
 
 # 2.2 Criando a estrutura de raspagem
-for estado in [23]:#[31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17]: #TODO:add 12,27,16,13,29]
+for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17,12,27,16,13,29]:
     cod_mun = mun[mun['Codigo_UF']==estado]
-    for ano in range(2019,2020): # TODO: Corrigir o intervalo
+    for ano in range(2013,2020): # TODO: Corrigir o intervalo
         for code in cod_mun['Codigo']:
             try:
                 # Identificando o nome do municipio
                 municipio = cod_mun[cod_mun['Codigo']==code]['municipio']
-
+                
                 # Criando o link de acesso as informações 
                 site = 'http://siops.datasus.gov.br/consleirespfiscal.php?S=1&UF={};&Municipio={};&Ano={}&Periodo=2'.format(estado,code,ano)
                 print(site)
 
                 # Acessando o link
                 drive.get(site)
-                
-                # Criando um sleep na raspagem 
-                time.sleep(2)
 
                 # Gerando as tabelas de informações 
                 buttom = drive.find_element_by_xpath("//div[@id='tudo']").find_element_by_xpath("//div[@id='container']").find_element_by_xpath("//div[@class='informacao']").find_element_by_xpath("//div[@class='centro']").find_element_by_xpath("//input[@type='Submit']")
@@ -211,8 +209,8 @@ for estado in [23]:#[31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35
                 var.append(pre_var)  
                 var_last=var[-1][0:4]
                 var_last.insert(3,'0.000000001')
-                #var[-1]=var_last
-                #var=var[1:]
+                var[-1]=var_last
+                var=var[1:]
                 for k in range(0,len(Descrição)):
                     sql = 'INSERT INTO Despesas_saúde_subfunção(municipio,codigo_municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
