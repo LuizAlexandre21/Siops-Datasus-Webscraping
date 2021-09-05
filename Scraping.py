@@ -24,6 +24,9 @@ db_cur = db_conn.cursor()
 # 1.1 Municipios 
 mun = pd.read_csv("Lista de municipios.csv")
 
+# 1.2 Estados
+est = pd.read_csv("Lista de Estados.csv")
+
 # 2. Raspando os dados 
 # 2.1 Configurando o drive do chrome 
 options = webdriver.ChromeOptions()
@@ -35,6 +38,7 @@ drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de
 # 2.2 Criando a estrutura de raspagem
 for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17,12,27,16,13,29]:
     cod_mun = mun[mun['Codigo_UF']==estado]
+    Estado =  str(est[est['Codigo']==estado]['UF'])
     for ano in range(2013,2020): # TODO: Corrigir o intervalo
         for code in cod_mun['Codigo']:
             try:
@@ -82,7 +86,7 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                 # Importando os dados para o banco 
                 for k in range(0,len(Descrição)):
                     sql = 'INSERT INTO Receitas_apuração_sps(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
-                    db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
+                    db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
                     db_conn.commit()
                     print("Insert")
             
@@ -109,7 +113,7 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                 var = var[1:]
                 for k in range(0,len(Descrição)):
                     sql = 'INSERT INTO Receitas_adicionais_financiamento(municipio,codigo_municipio,estado,ano,campo,previsao_inicial,previsão_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}")'
-                    db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
+                    db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
                     db_conn.commit()
                     print("Insert")
 
@@ -142,7 +146,7 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                 var=var[1:]
                 for k in range(0,len(Descrição)-1):
                     sql = 'INSERT INTO Despesas_saude_natureza(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
-                    db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
+                    db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
 
@@ -177,7 +181,7 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                 var=var[1:]
                 for k in range(0,len(Descrição)-1):
                     sql = 'INSERT INTO Despesas_saúde_não_computadas(municipio,codigo_Municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
-                    db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
+                    db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
                     
@@ -213,7 +217,7 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                 var=var[1:]
                 for k in range(0,len(Descrição)):
                     sql = 'INSERT INTO Despesas_saúde_subfunção(municipio,codigo_municipio,estado,ano,campo,dotação_inicial,dotação_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}","{}","{}")'
-                    db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
+                    db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),str(Descrição[k]),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
                     print("Insert")
 
@@ -229,17 +233,15 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                         lines = lines.replace(".","").replace(",",".")
                         Previsão.append(lines)
                     if n%2 ==0:
-                        for k in range(0,len(Descrição)):
-                            sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
-                            db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),'PERCENTUAL DE APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE SOBRE A RECEITA DE IMPOSTOS LÍQUIDA E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS',str(var[k][0])))
-                            db_conn.commit()
-                            print("Insert")
+                        sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
+                        db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'PERCENTUAL DE APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE SOBRE A RECEITA DE IMPOSTOS LÍQUIDA E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS',str(var[0][0])))
+                        db_conn.commit()
+                        print("Insert")
                     else:
-                        for k in range(0,len(Descrição)):
-                            sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
-                            db_cur.execute(sql.format(list(municipio)[0], str(code),np.unique(cod_mun['UF']),str(ano),'VALOR REFERENTE À DIFERENÇA ENTRE O VALOR EXECUTADO E O LIMITE MÍNIMO CONSTITUCIONAL',str(var[k][0])))
-                            db_conn.commit()
-                            print("Insert")
+                        sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
+                        db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'VALOR REFERENTE À DIFERENÇA ENTRE O VALOR EXECUTADO E O LIMITE MÍNIMO CONSTITUCIONAL',str(var[1][0])))
+                        db_conn.commit()
+                        print("Insert")
             except Exception as e:
                 print(e)
                 print(" Na cidade {} e no Ano {}, existe um problema".format(code,ano))
