@@ -1,5 +1,5 @@
 # RECEITAS PARA APURAÇÃO DA APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE	
-CREATE TABLE 1_Receitas_apuração_SPS (
+CREATE TABLE Receitas_apuração_SPS (
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -11,7 +11,7 @@ CREATE TABLE 1_Receitas_apuração_SPS (
     Receitas_realizadas_Porcentagem FLOAT
 );
 
-CREATE TABLE 2_Receitas_adicionais_financiamento (
+CREATE TABLE Receitas_adicionais_financiamento (
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -23,7 +23,7 @@ CREATE TABLE 2_Receitas_adicionais_financiamento (
     Receitas_realizadas_Porcentagem FLOAT
 );
 
-CREATE TABLE 3_Despesas_saúde_natureza(
+CREATE TABLE Despesas_saude_natureza(
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -36,7 +36,7 @@ CREATE TABLE 3_Despesas_saúde_natureza(
     despesas_executadas_porcentagem FLOAT
 );
 
-CREATE TABLE 4_Despesas_saúde_não_computadas(
+CREATE TABLE Despesas_saúde_não_computadas(
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -49,7 +49,7 @@ CREATE TABLE 4_Despesas_saúde_não_computadas(
     despesas_executadas_porcentagem FLOAT
 );
 
-CREATE TABLE 5_Despesas_saúde_subfunção(
+CREATE TABLE Despesas_saúde_subfunção(
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -61,3 +61,12 @@ CREATE TABLE 5_Despesas_saúde_subfunção(
     despesas_executadas_inscritas FLOAT,
     despesas_executadas_porcentagem FLOAT
 );
+
+CREATE TABLE Tabelas_adicionais(
+    municipio VARCHAR(255),
+    codigo_Municipio VARCHAR(255),
+    estado VARCHAR(255),
+    ano VARCHAR(255),
+    campo VARCHAR(255),
+    Total FLOAT, 
+)

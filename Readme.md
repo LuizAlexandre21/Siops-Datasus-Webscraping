@@ -12,7 +12,7 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 
 - [ ] Versão para o estado do Ceará
 - [x] Versão para todo o Brasil 
-  
+- [x] Versão com tabelas adicionais
 ### Versão 0.1 
 
 - Raspagem das principais tabelas do siops 
@@ -30,6 +30,15 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 
 ### Versão 0.2 
 - Amostra : Municipios de todo o território brasileiro
+
+### Versão 0.3 
+- Raspagem das principais tabelas do siops
+  - Receitas para apuração da aplicação em ações e serviços públicos de saúde
+  - Receitas adicionais para financiamento da saúde	
+  - Despesas com saúde (por grupo de natureza de despesa)
+  - Despesas com saúde não computadas para fins de apuração do percentual mínimo	
+  - Despesas com saúde	
+  - Tabelas adicionais (Percentual de Aplicação em Ações e Valor referente à diferença)
 ---
 ## Pre requisitos 
 
