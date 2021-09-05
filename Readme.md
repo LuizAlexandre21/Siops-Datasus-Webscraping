@@ -39,6 +39,10 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
   - Despesas com saúde não computadas para fins de apuração do percentual mínimo	
   - Despesas com saúde	
   - Tabelas adicionais (Percentual de Aplicação em Ações e Valor referente à diferença)
+  
+### Versão 0.3.1 
+- Correção da raspagem da tabela Despesas com Saúde (Por Subfunção) 
+
 ---
 ## Pre requisitos 
 
