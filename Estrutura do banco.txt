@@ -1,5 +1,5 @@
 # RECEITAS PARA APURAÇÃO DA APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE	
-CREATE TABLE Receitas_apuração_SPS (
+CREATE TABLE Receitas_apuração_sps (
     municipio VARCHAR(255),
     codigo_Municipio VARCHAR(255),
     estado VARCHAR(255),
@@ -68,5 +68,5 @@ CREATE TABLE Tabelas_adicionais(
     estado VARCHAR(255),
     ano VARCHAR(255),
     campo VARCHAR(255),
-    Total FLOAT, 
-)
+    Total FLOAT
+);

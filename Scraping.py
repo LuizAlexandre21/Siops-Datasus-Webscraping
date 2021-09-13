@@ -29,26 +29,25 @@ est = pd.read_csv("Lista de Estados.csv")
 
 # 2. Raspando os dados 
 # 2.1 Configurando o drive do chrome 
-options = webdriver.ChromeOptions()
-options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
-options.add_argument('headless')
-options.add_argument('window-size=0x0')
+#options = webdriver.ChromeOptions()
+#options.add_experimental_option("excludeSwitches",["ignore-certificate-errors"])
+#options.add_argument('headless')
+#options.add_argument('window-size=0x0')
 drive = webdriver.Chrome(executable_path='/home/alexandre/Documentos/Ciência de Dados/Monografia/Classificate_Political_Ideology/Scraper/chromedriver')#,chrome_options=options)
 
 # 2.2 Criando a estrutura de raspagem
-for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17,12,27,16,13,29]:
+for estado in [31,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17,12,27,16,13,29]:
     cod_mun = mun[mun['Codigo_UF']==estado]
-    Estado =  str(est[est['Codigo']==estado]['UF'])
-    for ano in range(2013,2020): # TODO: Corrigir o intervalo
+    Estado =  est[est['Codigo']==estado]['UF'].iloc[0]
+    for ano in range(2014,2020): # TODO: Corrigir o intervalo
         for code in cod_mun['Codigo']:
             try:
+               
                 # Identificando o nome do municipio
                 municipio = cod_mun[cod_mun['Codigo']==code]['municipio']
-                
                 # Criando o link de acesso as informações 
                 site = 'http://siops.datasus.gov.br/consleirespfiscal.php?S=1&UF={};&Municipio={};&Ano={}&Periodo=2'.format(estado,code,ano)
                 print(site)
-
                 # Acessando o link
                 drive.get(site)
 
@@ -233,15 +232,17 @@ for estado in [23,31,23,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28
                         lines = lines.replace(".","").replace(",",".")
                         Previsão.append(lines)
                     if n%2 ==0:
-                        sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
-                        db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'PERCENTUAL DE APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE SOBRE A RECEITA DE IMPOSTOS LÍQUIDA E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS',str(var[0][0])))
-                        db_conn.commit()
-                        print("Insert")
+                        for k in range(0,len(Descrição)):
+                            sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
+                            db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'PERCENTUAL DE APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE SOBRE A RECEITA DE IMPOSTOS LÍQUIDA E TRANSFERÊNCIAS CONSTITUCIONAIS E LEGAIS',str(var[k][0])))
+                            db_conn.commit()
+                            print("Insert")
                     else:
-                        sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
-                        db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'VALOR REFERENTE À DIFERENÇA ENTRE O VALOR EXECUTADO E O LIMITE MÍNIMO CONSTITUCIONAL',str(var[1][0])))
-                        db_conn.commit()
-                        print("Insert")
+                        for k in range(0,len(Descrição)):
+                            sql = 'INSERT INTO Tabelas_adicionais(municipio,codigo_municipio,estado,ano,campo,Total)VALUES("{}","{}","{}","{}","{}","{}")'
+                            db_cur.execute(sql.format(list(municipio)[0], str(code),Estado,str(ano),'VALOR REFERENTE À DIFERENÇA ENTRE O VALOR EXECUTADO E O LIMITE MÍNIMO CONSTITUCIONAL',str(var[k][0])))
+                            db_conn.commit()
+                            print("Insert")
             except Exception as e:
                 print(e)
                 print(" Na cidade {} e no Ano {}, existe um problema".format(code,ano))
