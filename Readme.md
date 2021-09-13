@@ -43,6 +43,15 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 ### Versão 0.3.1 
 - Correção da raspagem da tabela Despesas com Saúde (Por Subfunção) 
 
+### Versão 0.4 
+
+- Raspagem das tabelas do siops - Recursos Próprios Aplicados em Saúde
+  - Receitas de Impostos e Transferências Constitucionais e Legais Vinculadas à Saúde
+  - Despesa Total com Ações e Serviços Públicos de Saúde
+  - Receitas de Transferências de Recursos do SUS
+- Amostra : Municipios do Brasileiros
+- Intervalo Temporal : 2013 -2019 
+
 ---
 ## Pre requisitos 
 
@@ -86,11 +95,17 @@ port = "port"
 ```
 
 ### Executando o código 
+- **Tabelas principais do SIOPS**
+
 ```shell 
 python Scraping.py 
 ```
 
+- **Recursos Próprios Aplicados em Saúde**
 
+```shell
+python Scraping_recursosaplicados.py
+```
 ## Contato 
 
 :bust_in_silhouette: Luiz Alexandre Moreira Barros 
