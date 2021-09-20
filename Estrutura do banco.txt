@@ -70,3 +70,37 @@ CREATE TABLE Tabelas_adicionais(
     campo VARCHAR(255),
     Total FLOAT
 );
+
+
+CREATE TABLE Receitas de Impostos e Transferências(
+	municipio VARCHAR(255),
+	codigo_Municipio VARCHAR(255),
+	estado VARCHAR(255),
+	ano VARCHAR(255),
+	campo VARCHAR(255),
+	Previsão_atualizada FLOAT,
+	Receita_Realizada FLOAT
+	)
+	
+CREATE TABLE Receitas de Transferências de Recursos(
+	municipio VARCHAR(255),
+	codigo_Municipio VARCHAR(255),
+	estado VARCHAR(255),
+	ano VARCHAR(255),
+	campo VARCHAR(255),
+	Previsão_atualizada FLOAT,
+	Receita_Realizada FLOAT
+	)
+	
+CREATE TABLE Despesa Total com Ações e Serviços Públicos(
+	municipio VARCHAR(255),
+	codigo_Municipio VARCHAR(255),
+	estado VARCHAR(255),
+	ano VARCHAR(255),
+	campo VARCHAR(255),
+	Dotação FLOAT,
+	Despesas_Empenhada FLOAT,
+	Despesas_Liquidadas FLOAT,
+	Despesas_Pagas FLOAT)
+	
+	
