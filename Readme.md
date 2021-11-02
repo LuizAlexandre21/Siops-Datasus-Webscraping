@@ -52,6 +52,8 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 - Amostra : Municipios do Brasileiros
 - Intervalo Temporal : 2013 -2019 
 
+### Versão 0.5 
+- Amostra: Municipios e Estados Brasileiros 
 ---
 ## Pre requisitos 
 
@@ -105,6 +107,12 @@ python Scraping.py
 
 ```shell
 python Scraping_recursosaplicados.py
+```
+
+- **Tabelas dos SIOPS para o estado**
+
+```shell
+python Scraping_Siops_estados.py
 ```
 ## Contato 
 
