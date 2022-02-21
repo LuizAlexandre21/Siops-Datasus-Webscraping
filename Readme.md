@@ -54,6 +54,10 @@ O SIOPS é o sistema informatizado, de alimentação obrigatória e acesso públ
 
 ### Versão 0.5 
 - Amostra: Municipios e Estados Brasileiros 
+
+### Versão 0.6 
+- Personalização do codigo para o Distrito Federal 
+
 ---
 ## Pre requisitos 
 
