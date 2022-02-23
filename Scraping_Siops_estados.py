@@ -39,7 +39,7 @@ for estado in [23,31,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17
             # Extraindo as tabelas de informações
             table = drive.find_element_by_xpath("//div[@id='tudo']").find_element_by_xpath("//div[@id='arearelatorio']").find_element_by_xpath("//div[@class='informacao']").find_elements_by_xpath("//table[@class='tam2 tdExterno']")
 
-            if estado is not 53:
+            if estado != 53:
                 # RECEITAS PARA APURAÇÃO DA APLICAÇÃO EM AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE
                 Descrição = []
                 var = []
@@ -227,7 +227,7 @@ for estado in [23,31,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17
                         Previsão.append(lines) 
                 var.append(Previsão)
                 # Importando os dados para o banco 
-                for k in range(0,len(Descrição)):
+                for k in range(0,len(Descrição)-1):
                     sql = 'INSERT INTO Receitas_apuracao_sps_estadual(estado,ano,campo,previsao_inicial,previsao_atualizada,Receitas_realizadas_Bimestre,Receitas_realizadas_Porcentagem) VALUES("{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(Estado,str(ano),str(Descrição[k].replace('"',"|")),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3])))
                     db_conn.commit()
@@ -239,7 +239,7 @@ for estado in [23,31,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17
                 for i in range(40,48):
                     Descrição.append(table[1].find_elements_by_xpath("//td[@class='td2 caixa']")[i].text)
                 Previsão =[]
-                for j in range(156,196):
+                for j in range(160,196):
                     lines = table[1].find_elements_by_xpath("//td[@class='tdr caixa']")[j].text
                     if lines ==' ':
                         lines='0.000000001'
@@ -358,7 +358,7 @@ for estado in [23,31,53,32,52,21,51,50,15,25,41,26,22,24,43,33,11,14,42,35,28,17
                 var_last.insert(3,'0.000000001')
                 var[-1]=var_last
                 var=var[1:]
-                for k in range(0,len(Descrição)):
+                for k in range(0,len(Descrição)-1):
                     sql = 'INSERT INTO Despesas_saude_subfuncao_estadual(estado,ano,campo,dotacao_inicial,dotacao_atualizada,despesas_executadas_liquidadas,despesas_executadas_inscritas,despesas_executadas_porcentagem)VALUES("{}","{}","{}","{}","{}","{}","{}","{}")'
                     db_cur.execute(sql.format(Estado,str(ano),str(Descrição[k].replace('"',"|")),str(var[k][0]),str(var[k][1]),str(var[k][2]),str(var[k][3]),str(var[k][4])))
                     db_conn.commit()
